@@ -60,6 +60,11 @@
         function checkPassword() {
             var password = document.getElementById("password").value;
             if (password === "montanellipetrarca") {
+                // Set cookie with expiration time 24 hours
+                var now = new Date();
+                var expirationDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours
+                document.cookie = "login=true; expires=" + expirationDate.toUTCString() + "; path=/";
+                // Redirect to desired page
                 window.location.href = "https://user5095.github.io/Interrogazioni/Materie.html";
             } else {
                 var errorMessage = document.getElementById("error-message");
@@ -67,6 +72,14 @@
                 errorMessage.style.display = "block";
             }
         }
+
+        // Check if user is already logged in via cookie
+        window.onload = function() {
+            if (document.cookie.includes("login=true")) {
+                // Redirect to desired page
+                window.location.href = "https://user5095.github.io/Interrogazioni/Materie.html";
+            }
+        };
     </script>
 </body>
 </html>
