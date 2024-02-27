@@ -50,7 +50,7 @@
 
 <script>
 var giroCorrente = 1;
-var nomiEstratti = leggiCookie("nomiEstratti1") || [];
+var nomiEstratti = leggiCookie("nomiEstratti2") || [];
 
 // Carica i nomi estratti quando la pagina viene caricata
 window.onload = function() {
@@ -67,7 +67,7 @@ function estraiNome() {
     aggiungiGiroAllElenco(giroCorrente);
     nomiEstratti = [];
     pulisciElenco();
-    salvaCookie("nomiEstratti1", nomiEstratti, 365); // Scadenza impostata a 365 giorni
+    salvaCookie("nomiEstratti2", nomiEstratti, 365); // Scadenza impostata a 365 giorni
     return;
   }
 
@@ -89,7 +89,7 @@ function estraiNome() {
   }
 
   // Salva l'array nomiEstratti nei cookie
-  salvaCookie("nomiEstratti1", nomiEstratti, 365); // Scadenza impostata a 365 giorni
+  salvaCookie("nomiEstratti2", nomiEstratti, 365); // Scadenza impostata a 365 giorni
 }
 
 // Funzione per aggiungere un nome all'elenco
@@ -147,7 +147,7 @@ function leggiCookie(nome) {
 
 // Funzione per caricare i nomi estratti dai cookie
 function caricaNomiEstratti() {
-  nomiEstratti = leggiCookie("nomiEstratti1") || [];
+  nomiEstratti = leggiCookie("nomiEstratti2") || [];
   for (var i = 0; i < nomiEstratti.length; i++) {
     aggiungiNomeAllElenco(nomiEstratti[i]);
     if (i % 3 === 2) {
