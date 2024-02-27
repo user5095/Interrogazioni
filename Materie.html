@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Materie</title>
+  <title>Blocchi Cliccabili</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #575c879c;
+      background-color: #575c87cd;
       margin: 0;
       padding: 0;
     }
@@ -24,24 +24,24 @@
       width: 200px;
       height: 200px;
       background-color: #404981;
-      border: 2px solid #dddddd;
-      border-radius: 90px;
+      border: 3px solid #484c68;
+      border-radius: 35px;
       margin: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
-      color: #ffffff;
+      font-size: 18px;
+      color: #333333;
       text-decoration: none;
     }
 
     .block:hover {
-      background-color: #f9f9f9;
+      background-color: #404981c9;
     }
 
     .block a {
       text-decoration: none;
-      color: #333333;
+      color: #ffffff;
       width: 100%;
       height: 100%;
       display: flex;
@@ -51,111 +51,28 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="https://user5095.github.io/Interrogazioni/Matematica.html" class="block">Matematica</a>
-    <a href="https://user5095.github.io/Interrogazioni/Italiano.html" class="block">Italiano</a>
-    <a href="https://user5095.github.io/Interrogazioni/Geografia.html" class="block">Geografia</a>
-    <a href="https://user5095.github.io/Interrogazioni/Storia.html" class="block">Storia</a>
-    <br>
-    <a href="https://user5095.github.io/Interrogazioni/Inglese.html" class="block">Inglese</a>
-    <a href="https://user5095.github.io/Interrogazioni/Scienze.html" class="block">Scienze</a>
-    <a href="https://user5095.github.io/Interrogazioni/Arte.html" class="block">Arte</a>
-    <a href="https://user5095.github.io/Interrogazioni/Musica.html" class="block">Musica</a>
-    <a href="https://user5095.github.io/Interrogazioni/Tecnologia.html" class="block">Tecnologia</a>
-    <a href="https://user5095.github.io/Interrogazioni/Educaz.fisica.html" class="block">Educazione Fisica</a>
-  </div>
-
   <script>
-    function estraiNome() {
-      var giroCorrente = 1;
-      var nomiEstratti = leggiCookie("nomiEstratti") || [];
-
-      // Array di nomi
-      var nomi = ["Nico", "Bianca", "Francesco", "Matteo", "Luca", "Gabriele", "GabrieleAntonio", "Astou", "Mamadou", "Emma", "Alice", "Florian", "Christian", "Daniel", "Elia", "Letizia", "Ginevra", "Davide", "Rachele", "Alisia", "Safiria", "Margherita"];
-
-      // Verifica se ci sono nomi già estratti
-      if (nomiEstratti.length === nomi.length) {
-        giroCorrente++;
-        aggiungiGiroAllElenco(giroCorrente);
-        nomiEstratti = [];
-        pulisciElenco();
-        salvaCookie("nomiEstratti", nomiEstratti, 365); // Scadenza impostata a 365 giorni
-        return;
+    // Carica i nomi estratti quando la pagina viene caricata
+    window.onload = function() {
+      if (!document.cookie.includes("login=true")) {
+        // Se il cookie di login non è presente, reindirizza alla pagina di login
+        window.location.href = "https://user5095.github.io/Interrogazioni"; // Reindirizza alla pagina di login
       }
-
-      // Estrai un nome casuale che non è stato estratto precedentemente
-      var nomeCasuale;
-      do {
-        nomeCasuale = nomi[Math.floor(Math.random() * nomi.length)];
-      } while (nomiEstratti.includes(nomeCasuale));
-
-      // Aggiorna l'array dei nomi estratti
-      nomiEstratti.push(nomeCasuale);
-
-      // Aggiungi il nome estratto all'elenco come h4
-      aggiungiNomeAllElenco(nomeCasuale);
-
-      // Inserisci una riga di andata a capo dopo ogni terzo nome
-      if (nomiEstratti.length % 3 === 0 && nomiEstratti.length !== 0) {
-        aggiungiAndataACapo();
-      }
-
-      // Salva l'array nomiEstratti nei cookie
-      salvaCookie("nomiEstratti", nomiEstratti, 365); // Scadenza impostata a 365 giorni
-    }
-
-    // Funzione per aggiungere un nome all'elenco
-    function aggiungiNomeAllElenco(nome) {
-      var elenco = document.getElementById("nomiEstratti");
-      var listItem = document.createElement("li");
-      var nomeHeader = document.createElement("h4");
-      nomeHeader.textContent = nome;
-      nomeHeader.style.color = "black";
-      listItem.appendChild(nomeHeader);
-      elenco.appendChild(listItem);
-    }
-
-    // Funzione per aggiungere il giro all'elenco
-    function aggiungiGiroAllElenco(giro) {
-      var elenco = document.getElementById("nomiEstratti");
-      var listItem = document.createElement("li");
-      listItem.innerHTML = "<h1>Giro " + giro + "</h1>";
-      elenco.appendChild(listItem);
-    }
-
-    // Funzione per pulire l'elenco
-    function pulisciElenco() {
-      var elenco = document.getElementById("nomiEstratti");
-      elenco.innerHTML = "";
-    }
-
-    // Funzione per aggiungere una riga di andata a capo
-    function aggiungiAndataACapo() {
-      var elenco = document.getElementById("nomiEstratti");
-      var listItem = document.createElement("li");
-      listItem.innerHTML = "<br>";
-      elenco.appendChild(listItem);
-    }
-
-    // Funzione per salvare un cookie
-    function salvaCookie(nome, valore, giorni) {
-      var dataScadenza = new Date();
-      dataScadenza.setTime(dataScadenza.getTime() + (giorni * 24 * 60 * 60 * 1000));
-      var scadenza = "expires=" + dataScadenza.toUTCString();
-      document.cookie = nome + "=" + JSON.stringify(valore) + "; " + scadenza + "; path=/";
-    }
-
-    // Funzione per leggere un cookie
-    function leggiCookie(nome) {
-      var nomeEQ = nome + "=";
-      var cookies = document.cookie.split(';');
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        while (cookie.charAt(0) == ' ') cookie = cookie.substring(1, cookie.length);
-        if (cookie.indexOf(nomeEQ) == 0) return JSON.parse(cookie.substring(nomeEQ.length, cookie.length));
-      }
-      return null;
-    }
+    };
   </script>
+
+  <div class="container">
+    <a href="https://user5095.github.io/Interrogazioni/Matematica.html" class="block">MATEMATICA</a>
+    <a href="https://user5095.github.io/Interrogazioni/Storia.html" class="block">STORIA</a>
+    <a href="https://user5095.github.io/Interrogazioni/Inglese.html" class="block">INGLESE</a>
+    <a href="https://user5095.github.io/Interrogazioni/Arte.html" class="block">ARTE</a>
+    <a href="https://user5095.github.io/Interrogazioni/Francese.html" class="block">FRANCESE</a>
+    <a href="https://user5095.github.io/Interrogazioni/Musica.html" class="block">MUSICA</a>
+    <a href="https://user5095.github.io/Interrogazioni/Educaz.fisica.html" class="block">ED.FISICA</a>
+    <a href="https://user5095.github.io/Interrogazioni/Scienze.html" class="block">SCIENZE</a>
+    <a href="https://user5095.github.io/Interrogazioni/Italiano.html" class="block">ITALIANO</a>
+    <a href="https://user5095.github.io/Interrogazioni/Geografia.html" class="block">GEOGRAFIA</a>
+    <a href="https://user5095.github.io/Interrogazioni/Tecnologia.html" class="block">TECNOLOGIA</a>
+  </div>
 </body>
 </html>
