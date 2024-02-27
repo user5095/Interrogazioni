@@ -41,7 +41,7 @@
   </style>
 </head>
 <body>
-  <head><img src="https://i.gifer.com/9mkw.gif" width="600" height="900" style="float: right;"><head>
+  <header><img src="https://i.gifer.com/9mkw.gif" width="600" height="900" style="float: right;"></header>
   <img src="https://images.emojiterra.com/mozilla/512px/1f384.png" width="300">
   
 <button onclick="estraiNome()">Estrai</button>
@@ -50,7 +50,7 @@
 
 <script>
 var giroCorrente = 1;
-var nomiEstratti = leggiCookie("nomiEstratti10") || [];
+var nomiEstratti = leggiCookie("nomiEstratti11") || [];
 
 // Carica i nomi estratti quando la pagina viene caricata
 window.onload = function() {
@@ -67,7 +67,7 @@ function estraiNome() {
     aggiungiGiroAllElenco(giroCorrente);
     nomiEstratti = [];
     pulisciElenco();
-    salvaCookie("nomiEstratti10", nomiEstratti, 365); // Scadenza impostata a 365 giorni
+    salvaCookie("nomiEstratti11", nomiEstratti, 365); // Scadenza impostata a 365 giorni
     return;
   }
 
@@ -89,7 +89,7 @@ function estraiNome() {
   }
 
   // Salva l'array nomiEstratti nei cookie
-  salvaCookie("nomiEstratti10", nomiEstratti, 365); // Scadenza impostata a 365 giorni
+  salvaCookie("nomiEstratti11", nomiEstratti, 365); // Scadenza impostata a 365 giorni
 }
 
 // Funzione per aggiungere un nome all'elenco
@@ -147,7 +147,7 @@ function leggiCookie(nome) {
 
 // Funzione per caricare i nomi estratti dai cookie
 function caricaNomiEstratti() {
-  nomiEstratti = leggiCookie("nomiEstratti10") || [];
+  nomiEstratti = leggiCookie("nomiEstratti11") || [];
   for (var i = 0; i < nomiEstratti.length; i++) {
     aggiungiNomeAllElenco(nomiEstratti[i]);
     if (i % 3 === 2) {
