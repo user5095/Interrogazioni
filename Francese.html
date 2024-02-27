@@ -49,6 +49,15 @@
 <ul id="nomiEstratti"></ul>
 
 <script>
+
+  // Funzione per controllare la presenza del cookie di login
+window.onload = function() {
+  if (!document.cookie.includes("login=true")) {
+    // Se il cookie di login non è presente, reindirizza alla pagina di login
+    window.location.href = "https://user5095.github.io/Interrogazioni"; // Reindirizza alla pagina di login
+  }
+
+  
 var giroCorrente = 1;
 var nomiEstratti = leggiCookie("nomiEstratti3") || [];
 
