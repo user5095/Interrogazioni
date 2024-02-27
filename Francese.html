@@ -52,8 +52,12 @@
 var giroCorrente = 1;
 var nomiEstratti = leggiCookie("nomiEstratti3") || [];
 
-// Carica i nomi estratti quando la pagina viene caricata
+// Funzione per controllare la presenza del cookie di login
 window.onload = function() {
+  if (!document.cookie.includes("login=true")) {
+    // Se il cookie di login non è presente, reindirizza alla pagina di login
+    window.location.href = "https://user5095.github.io/Interrogazioni"; // Reindirizza alla pagina di login
+  }
   caricaNomiEstratti();
 };
 
@@ -89,7 +93,7 @@ function estraiNome() {
   }
 
   // Salva l'array nomiEstratti nei cookie
-  salvaCookie("nomiEstratti", nomiEstratti, 365); // Scadenza impostata a 365 giorni
+  salvaCookie("nomiEstratti3", nomiEstratti, 365); // Scadenza impostata a 365 giorni
 }
 
 // Funzione per aggiungere un nome all'elenco
