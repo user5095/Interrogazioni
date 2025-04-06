@@ -1,85 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #7c71d3;
-        }
-        .login-box {
-            width: 300px;
-            margin: 230px auto;
-            background: #485ba196;
-            padding: 20px;
-            border-radius: 40px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .login-box h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .login-box input[type="password"] {
-            width: 100%;
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 40px;
-            box-sizing: border-box;
-        }
-        .login-box input[type="submit"] {
-            width: 100%;
-            padding: 15px;
-            background-color: #3e4193;
-            border: none;
-            border-radius: 40px;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        .login-box input[type="submit"]:hover {
-            background-color: #454ea1;
-        }
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/main.js" defer></script>
+    <title>Interrogazioni</title>
 </head>
+
 <body>
-    <div class="login-box">
-        <h2>Login</h2>
-        <div id="error-message" class="error-message" style="display: none;"></div>
-        <input type="password" id="password" placeholder="Password" required>
-        <input type="submit" value="Login" onclick="checkPassword()">
-    </div>
-
-    <script>
-        function checkPassword() {
-            var password = document.getElementById("password").value;
-            if (password === "montanellipetrarca") {
-                // Set cookie with expiration time 24 hours
-                var now = new Date();
-                var expirationDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours
-                document.cookie = "login=true; expires=" + expirationDate.toUTCString() + "; path=/";
-                // Redirect to desired page
-                window.location.href = "https://user5095.github.io/Interrogazioni/Materie.html";
-            } else {
-                var errorMessage = document.getElementById("error-message");
-                errorMessage.innerHTML = "Password errata. Riprova.";
-                errorMessage.style.display = "block";
-            }
-        }
-
-        // Check if user is already logged in via cookie
-        window.onload = function() {
-            if (document.cookie.includes("login=true")) {
-                // Redirect to desired page
-                window.location.href = "https://user5095.github.io/Interrogazioni/Materie.html";
-            }
-        };
-    </script>
+    <main>
+        <form>
+            <textarea name="names" id="names" placeholder="Inserisci nomi..." rows="15" autofocus required></textarea>
+            <div class="buttons">
+                <button type="button" id="save">Salva</button>
+                <button type="button" id="load">Carica</button>
+            </div>
+            <button type="submit" id="extract">Estrai</button>
+        </form>
+        <h2 id="result"></h2>
+    </main>
 </body>
+
 </html>
