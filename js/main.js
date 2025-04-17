@@ -55,3 +55,15 @@ form.addEventListener('submit', (event) => {
         result.classList.add('selected');
     }, 100);
 });
+const getExtractedNames = () => {
+    const extractedNames = localStorage.getItem('extractedNames');
+    return extractedNames ? JSON.parse(extractedNames) : [];
+}
+const saveExtractedNames = (names) => {
+    localStorage.setItem('extractedNames', JSON.stringify(names));  
+}
+
+const filterExtractedNames = (names) => {
+    const extractedNames = getExtractedNames();
+    return names.filter(name => !extractedNames.includes(name));
+}
