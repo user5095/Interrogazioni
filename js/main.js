@@ -55,3 +55,45 @@ form.addEventListener('submit', (event) => {
         result.classList.add('selected');
     }, 100);
 });
+// Variabili globali per gestire i nomi estratti
+let extractedNames = [];
+
+// Modifica la funzione getNames per filtrare i nomi già estratti
+const filterExtractedNames = () => {
+    return getNames().filter((name) => !extractedNames.includes(name));
+};
+
+// Aggiorna la funzione di estrazione
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const names = filterExtractedNames();
+
+    if (names.length === 0) {
+        alert("Tutti i nomi sono stati estratti! Ricomincio il ciclo.");
+        extractedNames = []; // Resetta i nomi estratti
+        return;
+    }
+
+    // Rimuovi la classe selezionata se esiste
+    result.classList.remove('selected');
+
+    // Scegli il nome finale ma non mostrarlo subito
+    const selectedName = names.choose();
+    extractedNames.push(selectedName); // Aggiungi il nome alla lista dei nomi estratti
+    let counter = 0;
+
+    // Avvia l'animazione di mescolamento
+    const shuffleInterval = setInterval(() => {
+        // Mostra un nome casuale dalla lista ogni 100ms
+        result.textContent = names.choose();
+        counter += 100;
+
+        if (counter < 750) return;
+
+        // Dopo 750ms, ferma l'animazione e mostra il risultato finale
+        clearInterval(shuffleInterval);
+        result.textContent = selectedName;
+        result.classList.add('selected');
+    }, 100);
+});
